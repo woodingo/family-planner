@@ -4,6 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "module": "commonjs",
     "paths": {
+      "@api/*": ["src/api/*"],
       "@assets/*": ["src/assets/*"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],

@@ -29,6 +29,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack/webpack.prod.js --mode production",
-    "start": "webpack serve  --config webpack/webpack.dev.js  --hot --open"
+    "start": "webpack serve  --config webpack/webpack.dev.js  --hot --open",
+    "deploy": "yarn build & firebase deploy"
   }
 }
