@@ -1,9 +1,11 @@
 import {
   getAuth,
   signInWithPopup,
+  signOut,
   GoogleAuthProvider,
   onAuthStateChanged,
 } from 'firebase/auth';
+import { setUser } from '@stores/auth/events';
 
 const provider = new GoogleAuthProvider();
 
@@ -36,11 +38,14 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    console.log(user);
+    setUser(user);
     // ...
   } else {
     // User is signed out
     // ...
   }
 });
+
+export const logout = () => {
+  signOut(auth);
+};

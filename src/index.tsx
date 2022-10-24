@@ -2,12 +2,12 @@ import React from 'react';
 import { Button, NavBar, Space, Toast } from 'antd-mobile';
 import { createRoot } from 'react-dom/client';
 import '../firebase';
-import { doAuth } from './api/auth';
+import UserPage from '@pages/UserPage';
 
 const App = () => (
   <div>
     <NavBar>Hellooo</NavBar>
-    <Button onClick={doAuth}>do auth</Button>
+    <UserPage />
   </div>
 );
 

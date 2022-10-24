@@ -15,7 +15,7 @@
       "@helpers/*": ["src/helpers/*"],
       "@hooks/*": ["src/hooks/*"],
       "@mocks/*": ["src/mocks/*"],
-      "@routes/*": ["src/routes/*"]
+      "@pages/*": ["src/pages/*"]
     }
   }
 }

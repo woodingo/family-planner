@@ -2,6 +2,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const webpack = require('webpack');
 const commonConfig = require('./webpack.common');
 const { merge } = require('webpack-merge');
+const path = require('path');
 
 const mode = 'development';
 
@@ -41,6 +42,7 @@ const tsRule = {
 const cssModuleRule = {
   test: /\.module\.css$/,
   use: ['style-loader', cssLoader],
+  exclude: /\.css$/,
 };
 
 const cssRule = {
@@ -73,7 +75,7 @@ const devConfig = {
     definePlugin,
   ],
   module: {
-    rules: [tsRule, cssModuleRule, cssRule],
+    rules: [tsRule, cssRule, cssModuleRule],
   },
 };
 
