@@ -1,19 +1,19 @@
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const webpack = require('webpack');
-const commonConfig = require('./webpack.common');
-const { merge } = require('webpack-merge');
-const path = require('path');
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const webpack = require("webpack");
+const commonConfig = require("./webpack.common");
+const { merge } = require("webpack-merge");
+const path = require("path");
 
-const mode = 'development';
+const mode = "development";
 
 // Loaders
 
 const cssLoader = {
-  loader: 'css-loader',
+  loader: "css-loader",
   options: {
     sourceMap: true,
     modules: {
-      localIdentName: '[local]___[hash:base64:5]',
+      localIdentName: "[name]__[local]__[hash:base64:5]",
     },
   },
 };
@@ -33,21 +33,22 @@ const devServer = {
 const tsRule = {
   test: /\.ts$|tsx/,
   exclude: /node_modules/,
-  loader: require.resolve('babel-loader'),
+  loader: require.resolve("babel-loader"),
   options: {
-    plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
+    plugins: [require.resolve("react-refresh/babel")].filter(Boolean),
   },
 };
 
 const cssModuleRule = {
   test: /\.module\.css$/,
-  use: ['style-loader', cssLoader],
-  exclude: /\.css$/,
+  use: ["style-loader", cssLoader],
+  exclude: /node_modules/,
 };
 
-const cssRule = {
+const cssGlobalRule = {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader'],
+  use: ["style-loader", "css-loader"],
+  exclude: /\.module\.css$/,
 };
 
 // Plugins
@@ -55,17 +56,17 @@ const cssRule = {
 const hotReplacePlugin = new webpack.HotModuleReplacementPlugin();
 const reactRefreshPlugin = new ReactRefreshWebpackPlugin();
 const definePlugin = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': JSON.stringify(mode),
+  "process.env.NODE_ENV": JSON.stringify(mode),
 });
 
 // Config
 
 const devConfig = {
   mode,
-  stats: 'minimal',
-  devtool: 'source-map',
+  stats: "minimal",
+  devtool: "source-map",
   output: {
-    filename: '[name].js',
+    filename: "[name].js",
   },
   devServer,
   plugins: [
@@ -75,7 +76,7 @@ const devConfig = {
     definePlugin,
   ],
   module: {
-    rules: [tsRule, cssRule, cssModuleRule],
+    rules: [tsRule, cssGlobalRule, cssModuleRule],
   },
 };
 

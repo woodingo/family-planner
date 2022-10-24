@@ -1,3 +1,10 @@
 .root {
   color: black;
 }
+
+.ava {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  object-fit: contain;
+}

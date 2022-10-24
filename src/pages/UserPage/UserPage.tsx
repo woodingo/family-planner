@@ -1,10 +1,9 @@
-import { doAuth } from '@api/auth';
-import $user from '@stores/auth/user';
-import { Button } from 'antd-mobile';
-import { useStore } from 'effector-react';
-import React, { FunctionComponent } from 'react';
-// @ts-ignore
-import css from './UserPage.module.css';
+import { doAuth, logout } from "@api/auth";
+import $user from "@stores/auth/user";
+import { Button } from "antd-mobile";
+import { useStore } from "effector-react";
+import React, { FunctionComponent } from "react";
+import css from "./UserPage.module.css";
 
 interface UserPageProps {}
 
@@ -20,9 +19,12 @@ const UserPage: FunctionComponent<UserPageProps> = () => {
 
   return (
     <div className={css.root}>
+      <div>
+        <img className={css.ava} src={user.photoURL || undefined}></img>
+      </div>
       <div>{user.uid}</div>
       <div>
-        <Button>logout</Button>
+        <Button onClick={logout}>logout</Button>
       </div>
     </div>
   );
